@@ -2,10 +2,10 @@
 
 registry="hortonworks"
 flavor=$(cat sandbox-flavor)
-if [ "$flavor" == "hdf" ]; then
+if [ "$flavor" = "hdf" ]; then
  hdfEnabled=true
  hdpEnabled=false
-elif [ "$flavor" == "hdp" ]; then
+elif [ "$flavor" = "hdp" ]; then
  hdfEnabled=false
  hdpEnabled=true
 fi
@@ -146,7 +146,7 @@ map \$http_upgrade \$connection_upgrade {
 }
 EOF
   for port in ${httpPorts[@]}; do
-   if [ $port == '9995' ]; then
+   if [ $port = '9995' ]; then
     cat << EOF >> sandbox/proxy/conf.d/http-hdp.conf
 server {
   listen 9995;
@@ -173,7 +173,7 @@ fi
   done
 
   for origin in "${!tcpPortsHDP[@]}"; do
-   if [ $origin == '2201' ] || [ $origin == '2202' ]; then
+   if [ $origin = '2201' ] || [ $origin = '2202' ]; then
     cat << EOF >> sandbox/proxy/conf.stream.d/tcp-hdp.conf
 server {
   listen $origin;
